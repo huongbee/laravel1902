@@ -11,30 +11,64 @@
 |
 */
 
-Route::get('home', function () {
-    return view('welcome');
-});
-Route::get('about',function(){
-    echo 'About Page';
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('about',function(){
+//     echo 'About Page';
+// });
 
 // http://localhost:8000/list-product?page=1
 //  uri
 //  url
 // http://localhost:8000/list-product/page-1
 
-Route::get('list-product/page-{trang?}',function($p=1){
-    echo $p;
-    // print_r($_GET);
-    // echo $_GET['page'];
-})->where('trang','[0-9]+');
+// Route::get('list-product/page-{trang?}',function($p=1){
+//     echo $p;
+//     // print_r($_GET);
+//     // echo $_GET['page'];
+// })->where('trang','[0-9]+');
 
 
-Route::get('user/{name}/{age?}',function($ten, $tuoi=null){
-    echo $ten;
-    echo "<br>";
-    echo $tuoi;
-})->where([
-    'name'=>'[a-zA-Z-]+',
-    'age'=>'[0-9]+'
-]);
+// Route::get('user/{name}/{age?}',function($ten, $tuoi=null){
+//     echo $ten;
+//     echo "<br>";
+//     echo $tuoi;
+// })->where([
+//     'name'=>'[a-zA-Z-]+',
+//     'age'=>'[0-9]+'
+// ]);
+
+// Route::get('user/{id}',function($id){
+//     echo $id;
+// });
+// Route::get('product/{id}/{alias}',function($id){
+
+// });
+// Route::get('customer/{id}',function($id){
+
+// });
+
+Route::get('/login',function(){
+    echo 'Login Page';
+})->name('login_page');
+
+Route::get('register',function(){
+    // ... register account
+    // then
+    return redirect()->route('login_page');
+});
+// <a href="{{route('login_page')}}">Login</a>
+
+
+Route::get('customer/{id}',function($id){
+    echo $id;
+})->name('get_customer');
+
+Route::get('test-redirect',function(){
+
+    return redirect()->route('get_customer',15);
+    //15 => value for id of route get_customer
+
+    // return redirect()->route('get_customer',['id'=>12]);
+});
