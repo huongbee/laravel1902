@@ -49,26 +49,34 @@
 
 // });
 
-Route::get('/login',function(){
-    echo 'Login Page';
-})->name('login_page');
+// Route::get('/login',function(){
+//     echo 'Login Page';
+// })->name('login_page');
 
-Route::get('register',function(){
-    // ... register account
-    // then
-    return redirect()->route('login_page');
-});
-// <a href="{{route('login_page')}}">Login</a>
+// Route::get('register',function(){
+//     // ... register account
+//     // then
+//     return redirect()->route('login_page');
+// });
+// // <a href="{{route('login_page')}}">Login</a>
 
 
-Route::get('customer/{id}',function($id){
-    echo $id;
-})->name('get_customer');
+// Route::get('customer/{id}',function($id){
+//     echo $id;
+// })->name('get_customer');
 
-Route::get('test-redirect',function(){
+// Route::get('test-redirect',function(){
 
-    return redirect()->route('get_customer',15);
-    //15 => value for id of route get_customer
+//     return redirect()->route('get_customer',15);
+//     //15 => value for id of route get_customer
 
-    // return redirect()->route('get_customer',['id'=>12]);
-});
+//     // return redirect()->route('get_customer',['id'=>12]);
+// });
+
+
+// Route::get('/','HomeController@index');
+// Route::get('/user/{id}','HomeController@getUserId');
+// Route::get('/user/{id}/{name}','HomeController@getUserInfo')->name('userinfo');
+
+Route::get('home','HomeController@home');
+Route::get('about','HomeController@about');
