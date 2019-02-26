@@ -78,5 +78,18 @@
 // Route::get('/user/{id}','HomeController@getUserId');
 // Route::get('/user/{id}/{name}','HomeController@getUserInfo')->name('userinfo');
 
-Route::get('home','HomeController@home');
-Route::get('about','HomeController@about');
+// Route::get('home','HomeController@home');
+// Route::get('about','HomeController@about');
+
+
+/**
+ *  http://localhost:8000/home
+ *  
+ *  url: https://www.thegioididong.com/laptop
+ *  uri: laptop
+ */
+
+
+
+Route::get('/',"AdminController@getHome");
+Route::get('about',"AdminController@getAbout");

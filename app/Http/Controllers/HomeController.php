@@ -20,9 +20,12 @@ class HomeController extends Controller
     function getUserInfo(Request $req){
         return 'User id: '.$req->id .' - '. $req->name;
     }
+
     function home(){
         return view('home');
     }
+
+
     function about(){
         $person = [
             [
@@ -40,4 +43,9 @@ class HomeController extends Controller
         // return view('pages.about',['person'=>$person, 'diachi'=>$address]);
         // return view('pages/about');
     }
+
+    /**
+     * MCV
+     * 
+     */
 }

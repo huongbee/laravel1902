@@ -8,5 +8,6 @@
 </head>
 <body>
     <h2>Home Page</h2>
+    <h2>This is content</h2>
 </body>
 </html>
