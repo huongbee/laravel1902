@@ -47,6 +47,8 @@ class QueryBuilderController extends Controller
                 ->join('categories as c','p.id_type','=','c.id','inner')
                 ->where('c.id','=','7')
                 ->get(['p.name as tenSP','c.name as tenloai']);
+
+                //first();
         dd($data);  
 
     }
