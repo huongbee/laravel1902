@@ -89,7 +89,8 @@
  *  uri: laptop
  */
 
+// Route::get('/',"AdminController@getHome");
+// Route::get('about',"AdminController@getAbout");
 
 
-Route::get('/',"AdminController@getHome");
-Route::get('about',"AdminController@getAbout");
+Route::get('query-builder','QueryBuilderController@index');
