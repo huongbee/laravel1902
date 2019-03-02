@@ -15,8 +15,8 @@ class RenameColumnAdmin extends Migration
     {
         Schema::table('admin', function (Blueprint $table) {
             $table->renameColumn('username','email'); // rename column
-            $table->rename('admin','customer'); // rename table
-            // a->b
+            $table->rename('customer'); // rename table
+            // admin->customer
         });
     }
 
@@ -27,9 +27,9 @@ class RenameColumnAdmin extends Migration
      */
     public function down()
     {
-        Schema::table('admin', function (Blueprint $table) {
-            $table->rename('customer','admin'); // rename table
+        Schema::table('customer', function (Blueprint $table) {
             $table->renameColumn('email','username'); // rename column
+            $table->rename('admin'); // rename table
         });
     }
 }
