@@ -94,3 +94,4 @@
 
 
 Route::get('query-builder','QueryBuilderController@index');
+Route::get('eloquent-model','ModelController@index');

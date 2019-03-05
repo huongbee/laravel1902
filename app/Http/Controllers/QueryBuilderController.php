@@ -87,14 +87,16 @@ class QueryBuilderController extends Controller
         //         ])
         //         ->selectRaw('c.name, sum(price) as tongtien, count(p.id) as tongSP')
         //         ->groupBy('c.name')
+
         //         ->get();
 
         $data = DB::table('products as p')
                 ->join('categories as c',function($query){
                     $query->on('c.id', '=','p.id_type');
-                })->whereBetween('price',[50000000,100000000])
-                ->selectRaw('c.name, sum(price) as tongtien, count(p.id) as tongSP')
+                })->selectRaw('c.name, sum(price) as tongtien, count(p.id) as tongSP')
+                ->whereBetween('price',[50000000,100000000])
                 ->groupBy('c.name')
+                ->having('tongSP','>',2)
                 ->get();
         dd($data);
 
