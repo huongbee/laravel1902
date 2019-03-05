@@ -43,13 +43,60 @@ class QueryBuilderController extends Controller
         // INNER JOIN categories c
         // ON p.id_type = c.id
         // WHERE c.id = 7 
-        $data = DB::table('products as p')
-                ->join('categories as c','p.id_type','=','c.id','inner')
-                ->where('c.id','=','7')
-                ->get(['p.name as tenSP','c.name as tenloai']);
+        // $data = DB::table('products as p')
+        //         ->join('categories as c','p.id_type','=','c.id','inner')
+        //         ->where('c.id','=','7')
+        //         ->get(['p.name as tenSP','c.name as tenloai']);
+        //         //first();
+    
 
-                //first();
-        dd($data);  
+        $data = DB::table('products')
+                ->orderBy('price','DESC')
+                ->skip(0)
+                ->take(10)
+                ->get(['name','price']);
+
+                // ->select('price','name')
+                // ->limit(10)
+                // ->orderByDesc('price')
+        // dd($data);  
+        // foreach($data as $product){
+        //     echo "<h4>$product->name</h4>";
+        //     echo "<h4>$product->price</h4>";
+        //     echo "<hr>";
+        // }
+
+        // $data = DB::table('products')
+        //         ->selectRaw('avg(price) as dongiaTB, avg(promotion_price) as dongiaTB2')
+        //         ->where('deleted',0)
+        //         ->first();
+        // dd($data);
+        
+        // SELECT c.name, sum(price) as tongtien, count(p.id) as tongSP
+        // FROM products as p
+        // INNER JOIN categories as c
+        // ON p.id_type = c.id
+        // WHERE p.price BETWEEN 50000000 AND 100000000
+        // GROUP BY c.name
+        // $data = DB::table('products as p')
+        //         ->join('categories as c',function($query){
+        //             $query->on('c.id', '=','p.id_type');
+        //         })->where([
+        //             ['price','>=',50000000],
+        //             ['name','like','%iphone%'],
+        //         ])
+        //         ->selectRaw('c.name, sum(price) as tongtien, count(p.id) as tongSP')
+        //         ->groupBy('c.name')
+        //         ->get();
+
+        $data = DB::table('products as p')
+                ->join('categories as c',function($query){
+                    $query->on('c.id', '=','p.id_type');
+                })->whereBetween('price',[50000000,100000000])
+                ->selectRaw('c.name, sum(price) as tongtien, count(p.id) as tongSP')
+                ->groupBy('c.name')
+                ->get();
+        dd($data);
 
     }
 }
