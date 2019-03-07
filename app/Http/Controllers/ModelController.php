@@ -7,6 +7,8 @@ use App\Bill;
 use DB;
 use App\Product;
 use App\Customer;
+use App\PageUrl;
+use App\Category;
 
 class ModelController extends Controller
 {
@@ -83,5 +85,29 @@ class ModelController extends Controller
         $customer = Customer::where('email','teo@gmail.com')->delete();
 
 
+    }
+
+    function relationship(){
+        // $data = PageUrl::with('product')->limit(10)->get();
+        // echo "<div>";
+        // foreach($data as $item){
+        //     echo $item->url . " : ". $item->product->name;
+        //     echo "<br>";
+        // }
+        // echo "<div>";
+        // $data = Product::with('pageUrl')->limit(10)->get();
+        // foreach($data as $item){
+        //     echo $item->pageUrl->url.' : '. $item->name;
+        //     echo "<br>";
+        // }
+
+        $data = Category::with('products')->whereIn('id',[7,11])->get();
+        foreach($data as $type){
+            echo "<h3>$type->name</h3>";
+            foreach($type->products as $p){
+                echo "<p>$p->name</p>";
+            }
+            echo "<hr>";
+        }
     }
 }
