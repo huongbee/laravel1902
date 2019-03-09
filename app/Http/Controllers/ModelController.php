@@ -120,9 +120,33 @@ class ModelController extends Controller
         //     echo "<li>$role->role</li>";
         // }
 
-        $role = Role::where('role','staff')->with('users')->first();
-        foreach($role->users as $user){
-            echo "<li>$user->email</li>";
+        // $role = Role::where('role','staff')->with('users')->first();
+        // foreach($role->users as $user){
+        //     echo "<li>$user->email</li>";
+        // }
+
+        // get all products by id bill
+
+        $data = Bill::where('id',12)
+                ->with('products','billDetail')
+                ->first();
+        // dd($data);
+        $total = 0;
+        foreach($data->products as $key=>$p){
+            echo "<li>$p->name</li>";
+            $price = $p->price;
+            $qty = $data->billDetail[$key]->quantity;
+            $total += $price*$qty;
         }
+        echo "<br>";
+        echo number_format($total);
+        echo "<br>";
+        echo number_format($data->total);
+
+
+        // get all products of customer id = 10 & email = huongnguyen08.cv@gmail.com
+        // buy at 2018-05-25
+        
+
     }
 }
