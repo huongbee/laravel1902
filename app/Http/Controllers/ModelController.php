@@ -127,26 +127,42 @@ class ModelController extends Controller
 
         // get all products by id bill
 
-        $data = Bill::where('id',12)
-                ->with('products','billDetail')
-                ->first();
-        // dd($data);
-        $total = 0;
-        foreach($data->products as $key=>$p){
-            echo "<li>$p->name</li>";
-            $price = $p->price;
-            $qty = $data->billDetail[$key]->quantity;
-            $total += $price*$qty;
-        }
-        echo "<br>";
-        echo number_format($total);
-        echo "<br>";
-        echo number_format($data->total);
+        // $data = Bill::where('id',12)
+        //         ->with('products','billDetail')
+        //         ->first();
+        // // dd($data);
+        // $total = 0;
+        // foreach($data->products as $key=>$p){
+        //     echo "<li>$p->name</li>";
+        //     $price = $p->price;
+        //     $qty = $data->billDetail[$key]->quantity;
+        //     $total += $price*$qty;
+        // }
+        // echo "<br>";
+        // echo number_format($total);
+        // echo "<br>";
+        // echo number_format($data->total);
 
 
         // get all products of customer id = 10 & email = huongnguyen08.cv@gmail.com
         // buy at 2018-05-25
         
+        $data = Customer::where([
+            ['id','=',10],
+            ['email','=','huongnguyen08.cv@gmail.com']
+        ])->with(['bills'=>function($q){
+            $q->whereDate('date_order','2018-05-25');
+        },'bills.products'])->first();
+        // dd($data);
+
+        echo "<h3>Customer: $data->name</h3>";
+        foreach($data->bills as $bill){
+            echo "<h4>IDbill: $bill->id</h4>";
+            foreach($bill->products as $p){
+                echo "<li>$p->name</li>";
+            }
+            echo "<hr>";
+        }
 
     }
 }

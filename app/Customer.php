@@ -12,4 +12,9 @@ class Customer extends Model
     // protected $fillable = [
     //     'name','gender','email','address','phone'
     // ];
+
+    function bills(){
+        return $this->hasMany('App\Bill','id_customer','id');
+    }
+    
 }
