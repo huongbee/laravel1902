@@ -9,6 +9,8 @@ use App\Product;
 use App\Customer;
 use App\PageUrl;
 use App\Category;
+use App\User;
+use App\Role;
 
 class ModelController extends Controller
 {
@@ -101,13 +103,26 @@ class ModelController extends Controller
         //     echo "<br>";
         // }
 
-        $data = Category::with('products')->whereIn('id',[7,11])->get();
-        foreach($data as $type){
-            echo "<h3>$type->name</h3>";
-            foreach($type->products as $p){
-                echo "<p>$p->name</p>";
-            }
-            echo "<hr>";
+        // $data = Category::with('products')->whereIn('id',[7,11])->get();
+        // foreach($data as $type){
+        //     echo "<h3>$type->name</h3>";
+        //     foreach($type->products as $p){
+        //         echo "<p>$p->name</p>";
+        //     }
+        //     echo "<hr>";
+        // }
+
+        
+        // $user = User::where('id',2)->with('roles')->first();
+        // // dd($users);
+        // echo "<h4>$user->email</h4>";
+        // foreach($user->roles as $role){
+        //     echo "<li>$role->role</li>";
+        // }
+
+        $role = Role::where('role','staff')->with('users')->first();
+        foreach($role->users as $user){
+            echo "<li>$user->email</li>";
         }
     }
 }
