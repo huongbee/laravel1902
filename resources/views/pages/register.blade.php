@@ -19,7 +19,13 @@
                 <br>
                 <br>
                 <h3 class="text-center">Sign Up</h3>
+                @if($errors->any())
+                @foreach($errors->all() as $err)
+                    <li>{{$err}}</li>
+                @endforeach
+                @endif
                 <form action="{{route('register')}}" method="POST" >
+                    @csrf
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
