@@ -97,3 +97,6 @@ Route::get('query-builder','QueryBuilderController@index');
 Route::get('eloquent-model','ModelController@index');
 
 Route::get('relationship','ModelController@relationship');
+
+Route::get('sign-up',"AuthController@getRegister");
+Route::post('sign-up',"AuthController@postRegister")->name('register');

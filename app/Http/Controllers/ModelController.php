@@ -147,22 +147,57 @@ class ModelController extends Controller
         // get all products of customer id = 10 & email = huongnguyen08.cv@gmail.com
         // buy at 2018-05-25
         
-        $data = Customer::where([
-            ['id','=',10],
-            ['email','=','huongnguyen08.cv@gmail.com']
-        ])->with(['bills'=>function($q){
-            $q->whereDate('date_order','2018-05-25');
-        },'bills.products'])->first();
-        // dd($data);
+        // $data = Customer::where([
+        //     ['id','=',10],
+        //     ['email','=','huongnguyen08.cv@gmail.com']
+        // ])->with(['bills'=>function($q){
+        //     $q->whereDate('date_order','2018-05-25');
+        // },'bills.products'])->first();
+        // // dd($data);
 
-        echo "<h3>Customer: $data->name</h3>";
-        foreach($data->bills as $bill){
-            echo "<h4>IDbill: $bill->id</h4>";
-            foreach($bill->products as $p){
-                echo "<li>$p->name</li>";
+        // echo "<h3>Customer: $data->name</h3>";
+        // foreach($data->bills as $bill){
+        //     echo "<h4>IDbill: $bill->id</h4>";
+        //     foreach($bill->products as $p){
+        //         echo "<li>$p->name</li>";
+        //     }
+        //     echo "<hr>";
+        // }
+
+        // $data = Category::with('billDetail','billDetail.product')->get();
+        // foreach($data as $type){
+        //     echo $type->name;
+        //     foreach($type->billDetail as $detail){
+        //         echo "<br>";
+        //         echo $detail->product->name;
+        //         echo " - ";
+        //         echo 'So luong: '.$detail->quantity;
+        //     }
+        //     echo "<hr>";
+        // }
+        echo "<div>";
+        $data = Category::with('products','pageurl','products.pageUrlProduct')->get();
+        foreach($data as $type){
+            echo "<b>$type->name ---- ";
+            echo $type->pageurl->url."</b> ";
+            foreach($type->products as $product){
+                echo "<li>$product->name -----";
+                echo $product->pageUrlProduct->url."</li>";
             }
             echo "<hr>";
         }
-
     }
 }
+/**
+ * 
+ * Loai 1: Phu kien : phu-kien 
+ *      - op lung ip : op-lung-ip
+ *      - ... 
+ *      - ... 
+ * Loai 2: Imac
+ *      - ... 
+ *      - ... 
+ *      - ... 
+ * 
+ * 
+ */

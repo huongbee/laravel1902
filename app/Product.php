@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    function pageUrl(){
+    function pageUrlProduct(){
         return $this->belongsTo('App\PageUrl','id_url','id');  
         //id: other key 
     }
+    
 }
