@@ -45,6 +45,12 @@ class AuthController extends Controller
             $user->save();
             dd($user);
     }   
+    function getLogin(){
+        return view('pages.login');
+    }
+    function postLogin(Request $req){
+        
+    } 
 }
 
 //111111: $2y$10$Z8.DJSJwCWL.VzFUoGJwJOKh5EgbW8oiMXUL4.289XzJqh/mQJ1hy
