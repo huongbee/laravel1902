@@ -19,11 +19,11 @@
                 <br>
                 <br>
                 <h3 class="text-center">Sign Up</h3>
-                @if($errors->any())
+                {{-- @if($errors->any())
                 @foreach($errors->all() as $err)
                     <li>{{$err}}</li>
                 @endforeach
-                @endif
+                @endif --}}
                 <form action="{{route('register')}}" method="POST" >
                     @csrf
                     <div class="form-group row">
@@ -31,32 +31,64 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="email"
                                 placeholder="email@example.com">
+                            @if($errors->has('email'))
+                            <div class="text-danger">
+                                {{$errors->first('email')}}
+                            </div>
+                            @endif
                         </div>
+
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"
                                 placeholder="username" name="username">
+                            
+                            @if($errors->has('username'))
+                            <div class="text-danger">
+                                @foreach($errors->get('username') as $err)
+                                <li>{{$err}}</li>
+                                @endforeach
+                            </div>
+                            @endif
                         </div>
+                        
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Birthdate</label>
                         <div class="col-sm-10">
                             <input type="date" class="form-control"
                                 placeholder="Birthdate" name="birthdate">
+                            @if($errors->has('birthdate'))
+                            <div class="text-danger">
+                                @foreach($errors->get('birthdate') as $err)
+                                <li>{{$err}}</li>
+                                @endforeach
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                             <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+                            @if($errors->has('password'))
+                            <div class="text-danger">
+                                {{$errors->first('password')}}
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group row">
                         <label  class="col-sm-2 col-form-label">Confirm Password</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
+                            @if($errors->has('password_confirmation'))
+                            <div class="text-danger">
+                                {{$errors->first('password_confirmation')}}
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">

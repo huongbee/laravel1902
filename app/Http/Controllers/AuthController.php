@@ -18,7 +18,7 @@ class AuthController extends Controller
         $validator = Validator::make($req->all(),[
             'email'=>'required|email|min:10|unique:users,email',
             'username'=>'required|min:10|unique:users',
-            'birthdate'=>'date',
+            // 'birthdate'=>'',
             'password'=>'required|min:6',
             'password_confirmation' => 'same:password'
         ]);
@@ -26,5 +26,7 @@ class AuthController extends Controller
             return redirect()->back()->withErrors($validator);
         else 
             dd($req->all());
+            
+
     }   
 }
