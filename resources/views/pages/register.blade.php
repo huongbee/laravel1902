@@ -15,9 +15,6 @@
             <div class="col-6">
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
                 <h3 class="text-center">Sign Up</h3>
                 {{-- @if($errors->any())
                 @foreach($errors->all() as $err)
@@ -27,9 +24,10 @@
                 <form action="{{route('register')}}" method="POST" >
                     @csrf
                     <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Email
+                        </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="email"
+                        <input type="text" class="form-control" name="email" value="{{old('email')}}" 
                                 placeholder="email@example.com">
                             @if($errors->has('email'))
                             <div class="text-danger">
@@ -43,7 +41,8 @@
                         <label class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control"
-                                placeholder="username" name="username">
+                                placeholder="username"
+                                 value="{{old('username')}}" name="username">
                             
                             @if($errors->has('username'))
                             <div class="text-danger">

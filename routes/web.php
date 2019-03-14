@@ -100,3 +100,6 @@ Route::get('relationship','ModelController@relationship');
 
 Route::get('sign-up',"AuthController@getRegister");
 Route::post('sign-up',"AuthController@postRegister")->name('register');
+
+Route::get('sign-in',"AuthController@getLogin");
+Route::post('sign-in',"AuthController@postLogin")->name('login');
