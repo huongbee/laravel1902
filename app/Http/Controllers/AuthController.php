@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Hash;
 use App\User;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -43,12 +44,23 @@ class AuthController extends Controller
             $user->birthdate = $req->birthdate;
             $user->password = Hash::make($req->password);
             $user->save();
-            dd($user);
+            return redirect('sign-in');
     }   
     function getLogin(){
         return view('pages.login');
     }
     function postLogin(Request $req){
+        $email = $req->email;
+        $password = $req->password;
+        // $req->only('email','password');
+        if(Auth::attempt(['email'=>$email,'password'=>$password])){
+            // $user = Auth::user();
+            // dd($user);
+            return redirect('/');
+        }
+        else{
+            echo 'khong tim thay';
+        }
         
     } 
 }
@@ -57,3 +69,7 @@ class AuthController extends Controller
 //111111: $2y$10$aTPuwrCbnBSTunDEIvWbouS/gLa0fiKBW2SxXDLXrxuw1Opt32CKC
 //111111: $2y$10$EM0H5NOoWPk5IpTH.4oT4uCL7NVHcFVrAZCy4rAvOlHYOJPtIldGG
 
+
+// $hash = $2y$10$aTPuwrCbnBSTunDEIvWbouS/gLa0fiKBW2SxXDLXrxuw1Opt32CKC
+//111111
+// Hash::check('111111',$hash) return bool

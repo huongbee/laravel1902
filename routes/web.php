@@ -103,3 +103,15 @@ Route::post('sign-up',"AuthController@postRegister")->name('register');
 
 Route::get('sign-in',"AuthController@getLogin");
 Route::post('sign-in',"AuthController@postLogin")->name('login');
+
+Route::get('/',function(){
+    if(Auth::check()){
+        echo 'da login';
+
+        // Auth::logout();
+
+    }
+    else{
+        echo 'chua login';
+    }
+});
