@@ -256,6 +256,19 @@
         'prefix' => '',
         'prefix_indexes' => true,
       ),
+      'mongodb' => 
+      array (
+        'driver' => 'mongodb',
+        'host' => '127.0.0.1',
+        'port' => '3306',
+        'database' => 'laravel1902_shopping',
+        'username' => 'root',
+        'password' => '',
+        'options' => 
+        array (
+          'database' => 'admin',
+        ),
+      ),
     ),
     'migrations' => 'migrations',
     'redis' => 

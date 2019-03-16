@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,17 +102,27 @@ Route::get('relationship','ModelController@relationship');
 Route::get('sign-up',"AuthController@getRegister");
 Route::post('sign-up',"AuthController@postRegister")->name('register');
 
-Route::get('sign-in',"AuthController@getLogin");
+Route::get('sign-in',"AuthController@getLogin")->name('getlogin');
 Route::post('sign-in',"AuthController@postLogin")->name('login');
 
-Route::get('/',function(){
-    if(Auth::check()){
-        echo 'da login';
 
-        // Auth::logout();
 
-    }
-    else{
-        echo 'chua login';
-    }
+Route::group(['middleware'=>'check.isadmin'],function(){
+
+    Route::get('/','AuthController@home');
+    Route::get('logout','AuthController@logout');
+
+});
+
+Route::get('set-session',function(){
+    session([
+        'username' => ['admin','23456'],
+        'name'=>'Nguyen A'
+    ]);
+});
+
+Route::get('get-session',function(){
+    // $value = session('username','default');
+    $value = session()->all();
+    print_r($value);
 });

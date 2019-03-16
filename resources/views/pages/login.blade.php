@@ -16,6 +16,12 @@
                 <br>
                 <br>
                 <h3 class="text-center">Sign In</h3>
+
+                @if(Session::has('error'))
+                    <div class="alert alert-warning">
+                        <div class="text-center">{{Session::get('error')}}</div>
+                    </div>
+                @endif
                 <form action="{{route('login')}}" method="POST" >
                     @csrf
                     <div class="form-group row">

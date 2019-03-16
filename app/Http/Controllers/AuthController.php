@@ -63,7 +63,17 @@ class AuthController extends Controller
         }
         
     } 
+
+    function home(){
+        return view('pages.home');
+    }
+    function logout(){
+        Auth::logout();
+        return redirect()->route('getlogin');
+    }
 }
+// https://github.com/huongnguyen08/admin
+
 
 //111111: $2y$10$Z8.DJSJwCWL.VzFUoGJwJOKh5EgbW8oiMXUL4.289XzJqh/mQJ1hy
 //111111: $2y$10$aTPuwrCbnBSTunDEIvWbouS/gLa0fiKBW2SxXDLXrxuw1Opt32CKC
